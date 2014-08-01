@@ -1,0 +1,133 @@
+<html><head>
+<title>Photo viewer - page <%= @thispage.page %></title>
+
+<style type="text/css">
+body {
+	background-color: #fff;
+	color: #000;
+	font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+	text-align: center;
+	margin: 16px;
+	padding: 0;
+}
+.thumbwrap {
+	border: 0px solid #999;
+	padding: 15px 8px 0 8px;
+	background-color: #ffffff;
+	margin: 0;
+}
+.thumbwrap li {
+	display: -moz-inline-box;
+	display: inline-block;
+	/*\*/ vertical-align: top; /**/
+	margin: 0 5px 10px 5px;
+	border: 0px solid #999;
+	padding: 0;
+}
+.thumbwrap li>div {
+	/*\*/ display: table; table-layout: fixed; /**/
+	width: 199px;
+}
+.thumbwrap a {
+	display: block;
+	text-decoration: none;
+	color: #000;
+	background-color: #ffe;
+	cursor: pointer;
+}
+/*\*/
+.thumbwrap>li .wrimg {
+	display: table-cell;
+	vertical-align: middle;
+	width: 199px;
+	height: 199px;
+}
+/**/
+.thumbwrap li .wrimg {
+	background-image: url(g100c2.pl?g100c2.gif);
+}
+.thumbwrap img {
+	border: solid 1px #66f;
+	vertical-align: middle;
+}
+/*\*//*/
+* html .thumbwrap li .wrimg {
+	display: block;
+	font-size: 1px;
+}
+* html .thumbwrap .wrimg span {
+	display: inline-block;
+	vertical-align: middle;
+	height: 199px;
+	width: 1px;
+}
+/* top ib e hover Op < 9.5 */
+@media all and (min-width: 0px) {
+	html:first-child .thumbwrap li div {
+		display: block;
+	}
+	html:first-child .thumbwrap a {
+		display: inline-block;
+		vertical-align: top;
+	}
+	html:first-child .thumbwrap {
+		border-collapse: collapse;
+		display: inline-block; /* non deve avere margin */
+	}
+}
+</style>
+<!--[if lt IE 8]><style>
+.thumbwrap li {
+	width: 201px;
+	w\idth: 199px;
+	display: inline;
+}
+.thumbwrap {
+	_height: 0;
+	zoom: 1;
+	display: inline;
+}
+.thumbwrap li .wrimg {
+	display: block;
+	/* evita hasLayout per background position */
+	width: auto;
+	height: auto;
+}
+.thumbwrap .wrimg span {
+	vertical-align: middle;
+	height: 199px;
+	zoom: 1;
+}
+</style><![endif]-->
+
+<!-- link rel="stylesheet" type="text/css" href="/styles/page.css" -->
+    
+</head>
+<body>
+<a href="/sheet/1">                             1            </a> 
+<% if ((@thispage.prev != @thispage.page) && (@thispage.prev != 1)) %>
+	<a href="/sheet/<%= @thispage.prev %>">          <%= @thispage.prev %> </a>
+<% end %>
+<% if ((@thispage.next != @thispage.page) && (@thispage.next != @thispage.last)) %>
+	<a href="/sheet/<%= @thispage.next %>">          <%= @thispage.next %> </a>
+<% end %>
+<a href="/sheet/<%= @thispage.last %>">                  <%= @thispage.last %> </a> <br>
+
+<ul class="thumbwrap">
+
+<% @thispage.photofiles.each do |file| %>
+	<% thumb = @thispage.thumbfiles[file] %>
+	<% width, height = FastImage.size(thumb) %>
+	<li><div>
+	  <a href="<%= file.gsub(LIBRARY, "") %>"> 
+	    <span class="wrimg"> <span> </span>
+	    <img src="<%= thumb.gsub(LIBRARY, "") %>" alt="<%= file %>" width=<%= width/2 %> height=<%= height/2 %> > 
+	   </span>
+	  </a>
+	</div>
+	</li>
+	<% end %>
+</ul>
+</body>
+</html>
+

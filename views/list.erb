@@ -1,0 +1,25 @@
+<html><head>
+<title>Photo viewer - page <%= @thispage.page %></title>
+</head>
+<body>
+<a href="/list/1">                             1            </a> 
+<% if ((@thispage.prev != @thispage.page) && (@thispage.prev != 1)) %>
+	<a href="/list/<%= @thispage.prev %>">          <%= @thispage.prev %> </a>
+<% end %>
+<% if ((@thispage.next != @thispage.page) && (@thispage.next != @thispage.last)) %>
+	<a href="/list/<%= @thispage.next %>">          <%= @thispage.next %> </a>
+<% end %>
+<a href="/list/<%= @thispage.last %>">                  <%= @thispage.last %> </a> <br>
+
+<% @thispage.photofiles.each do |file| %>
+	<% thumb = @thispage.thumbfiles[file] %> 
+<!--  file.gsub(LIBRARY+"/Originals", LIBRARY+"/Data.noindex").gsub(LIBRARY+"/Modified", LIBRARY+"/Data.noindex") % -->
+	<% width, height = FastImage.size(thumb) %>
+File:   <%= file   %>
+Thumb:  <%= thumb  %> 
+Width:  <%= width  %> 
+Height: <%= height %>
+<br>
+<% end %>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html><head>
+<title>Photo viewer - page <%= @thispage.page %></title>
+</head>
+<body>
+<a href="/sheet/1">                             1            </a> 
+<% if ((@thispage.prev != @thispage.page) && (@thispage.prev != 1)) %>
+	<a href="/sheet/<%= @thispage.prev %>">          <%= @thispage.prev %> </a>
+<% end %>
+<% if ((@thispage.next != @thispage.page) && (@thispage.next != @thispage.last)) %>
+	<a href="/sheet/<%= @thispage.next %>">          <%= @thispage.next %> </a>
+<% end %>
+<a href="/sheet/<%= @thispage.last %>">                  <%= @thispage.last %> </a> <br>
+
+<% @thispage.photofiles.each do |file| %>
+	<% thumb = @thispage.thumbfiles[file] %>
+	<% width, height = FastImage.size(thumb) %>
+	<a href="<%= file.gsub(LIBRARY, "") %>"> 
+		<img src="<%= thumb.gsub(LIBRARY, "") %>" width=<%= width/2 %> height=<%= height/2 %> > 
+	</a>
+	<% end %>
+</body>
+</html>

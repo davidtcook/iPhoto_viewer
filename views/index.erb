@@ -1,0 +1,10 @@
+<html><head>
+<title>Photo viewer</title>
+</head>
+<body>
+<h1>Photos</h1>
+There are <%= Photos.size %> photos to view. <br>
+<a href="/sheet/1">First page</a> <br>
+<a href="/sheet/<%= last_page(Photos.size) %>">Last page</a> <br>
+</body>
+</html>
