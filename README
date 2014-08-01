@@ -9,3 +9,9 @@ allphotos2.rb - reads from the iPhoto SQLite database, and serves up pages of th
 
 TODO - merge the programs, allow any album to be chosen, add Gemfile etc etc
 
+The files in public/ should be symlinks to the iPhoto library, e.g. :
+lrwxr-xr-x  1 david  staff   41 19 Mar 16:59 Data -> /Users/david/Pictures/iPhoto Library/Data
+lrwxr-xr-x  1 david  staff   49 10 Mar 22:49 Data.noindex -> /Users/david/Pictures/iPhoto Library/Data.noindex
+lrwxr-xr-x  1 david  staff   45 19 Mar 16:45 Modified -> /Users/david/Pictures/iPhoto Library/Modified
+lrwxr-xr-x  1 david  staff   46 10 Mar 22:49 Originals -> /Users/david/Pictures/iPhoto Library/Originals
+
