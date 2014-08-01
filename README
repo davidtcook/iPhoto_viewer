@@ -1,0 +1,11 @@
+
+This is a hack ! (of course)
+
+There are two programs here, probably should be merged in some clever way :
+
+allphotos.rb - reads from the iPhoto filesystem, and servers up pages of thumbnails to view
+
+allphotos2.rb - reads from the iPhoto SQLite database, and serves up pages of thumbnails of Flagged items to view
+
+TODO - merge the programs, allow any album to be chosen, add Gemfile etc etc
+
